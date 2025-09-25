@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:scholar_chat_app/constants.dart';
 import 'package:scholar_chat_app/helper/show_snack_bar.dart';
+import 'package:scholar_chat_app/pages/chat_page.dart';
 import 'package:scholar_chat_app/pages/register_page.dart';
 import 'package:scholar_chat_app/pages/widgets/custom_button.dart';
 import 'package:scholar_chat_app/pages/widgets/custom_text_field.dart';
@@ -86,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
                       setState(() {});
                       try {
                         await loginUser();
-                        showSnacBar(context, 'User signed in successfully');
+                          Navigator.pushNamed(context, ChatPage.id);
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
                           showSnacBar(context, 'No user found for that email');
@@ -117,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.pushNamed(context, RegisterPage.id);
                       },
                       child: Text(
-                        ' Register now',
+                        ' Register',
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.black,

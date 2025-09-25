@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:scholar_chat_app/helper/show_snack_bar.dart';
+import 'package:scholar_chat_app/pages/chat_page.dart';
 import 'package:scholar_chat_app/pages/login_page.dart';
 import 'package:scholar_chat_app/pages/widgets/custom_button.dart';
 import 'package:scholar_chat_app/pages/widgets/custom_text_field.dart';
@@ -88,8 +89,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       setState(() {});
                       try {
                         await registerUser();
-                        showSnacBar(context, 'User registered successfully');
-                        //Navigator.pop(context);
+                       Navigator.pushNamed(context, ChatPage.id);
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'weak-password') {
                           showSnacBar(
